@@ -16,7 +16,7 @@
 						template: '<button v-on:click="showLog">show</button>',
             methods:{
               showLog: function (){
-          //2번: this.$emit('show-log')가 실행되면서 show-log이벤트가 발생됨. 여기서 emit은 이벤트를 발생시킴.
+          //2번: this.$emit('show-log')가 실행되면서 show-log이벤트가 발생됨. 여기서 emit은 이벤트를 발생시킴(보냄).
                 this.$emit('show-log');
               }
             }
