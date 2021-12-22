@@ -5,10 +5,21 @@
     <span class="addContainer" v-on:click="addWish">
       <i class="addBtn fas fa-plus" aria-hidden="true"></i>
     </span>
+
+    <modal v-if="showModal" @close="showModal = false">
+      <!--모달제목-->
+      <h3 slot="header">경고</h3>
+      <!--모달제목-->
+      <span slot="footer" @click="showMadal = false">
+        위시리스트를 입력하세요.
+        <i class="closeModalBtn fas fa-times" aria-hidden="true"></i>
+      </span>
+    </modal>
   </div>
 </template>
 
 <script>
+import Modal from './common/modal.vue'
 export default {
   data(){
     return {

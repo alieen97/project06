@@ -1,6 +1,6 @@
 <template lang="html">
   <section>
-    <tramsition-group name="list" tag="ul">
+    <transition-group name="list" tag="ul">
       <li v-for="(wishItem, index) in propsdata" :key="wishItem" class="shadow">
         <i class="checkBtn fas fa-check" aria-hidden="true"></i>
         {{ wishItem }}
@@ -9,7 +9,7 @@
           <i class="far fa-trash-alt" aria-hidden="true"></i>
         </span>
       </li>
-    </tramsition-group>
+    </transition-group>
   </section>
 </template>
 
