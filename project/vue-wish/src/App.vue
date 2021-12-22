@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <WishHeader></WishHeader>
-    <WishInput></WishInput>
-    <WishList></WishList>
-    <WishFooter></WishFooter>
+    <WishInput v-on:addWish="addWish"></WishInput>
+    <WishList v-bind:propsdata="wishItems" @removeWish="removeWish"></WishList>
+    <WishFooter v-on:removeAll="clearAll"></WishFooter>
   </div>
 </template>
 
@@ -13,6 +13,33 @@ import WishInput from './components/WishInput.vue'
 import WishList from './components/WishList.vue'
 import WishFooter from './components/WishFooter.vue'
 export default {
+  data() {
+    return {
+      wishItems: []
+    }
+  },
+  created() {
+    if (localStorage.length > 0) {
+      for (var i = 0; i < localStorage.length; i++) {
+        this.wishItems.push(localStorage.key(i));
+      }
+    }
+  },
+  methods: {
+    addWish(wishItem){
+      //로컬 스토리지에 데이터를 추가하는 로직을 넣을 것임
+      localStorage.setItem(wishItem, wishItem);
+      this.wishItems.push(wishItem);
+    },
+    clearAll() {
+      localStorage.clear();
+      this.wishItems = [];
+    },
+    removeWish(wishItem, index) {
+      localStorage.removeItem(wishItem);
+      this.wishItems.splice(index, 1);
+    }
+  },
   components:{
     'WishHeader': WishHeader,
     'WishInput': WishInput,
@@ -23,18 +50,18 @@ export default {
 </script>
 
 <style lang="css">
-  body{
+body {
     text-align: center;
-    background-color:#f6f6f6;
-  }
-  input{
+    background-color: #f6f6f8;
+}
+input {
     border-style: groove;
     width: 200px;
-  }
-  button{
+}
+button {
     border-style: groove;
-  }
-  .shadow{
-    box-shadow: 5px 10px 10px rgba(0,0,0,0.03);
-  }
+}
+.shadow {
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.03);
+}
 </style>
